@@ -1,0 +1,131 @@
+// Reference: https://code.visualstudio.com/docs/remote/containers#_devcontainerjson-reference
+{
+  "name": "API Dev (sig)",
+  "dockerFile": "Dockerfile",
+  "appPort": [
+    "4010:4010",
+    "4020:4020",
+    "2999:2999",
+    "3000:3000",
+    "3051:3051",
+    "3061:3061",
+    "3071:3071",
+    "3041:3041",
+    "3010:3010",
+    "3021:3021",
+    "3031:3031",
+    "3081:3081",
+  ],
+  // "postCreateCommand": "zsh",
+  "extensions": [
+    
+    // diversas
+    "mutantdino.resourcemonitor",
+    "CoenraadS.bracket-pair-colorizer",
+    "devondcarew.bazel-code",
+    "EditorConfig.EditorConfig",
+    "eg2.vscode-npm-script",
+    "esbenp.prettier-vscode",
+    "github.vscode-pull-request-github",
+    "msjsdiag.debugger-for-chrome",
+    "ms-azuretools.vscode-docker",
+    "shanoor.vscode-nginx",
+    "DavidAnson.vscode-markdownlint",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "humao.rest-client",
+    // themes
+    "hedinne.popping-and-locking-vscode",
+    "sdras.night-owl",
+    "PKief.material-icon-theme",
+    // intellisenses
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "cmborchert.local-import-intellisense",
+    // SQL
+    "jakebathman.mysql-syntax",
+    "mtxr.sqltools",
+    // ES6
+    "dbaeumer.vscode-eslint",
+    "dzannotti.vscode-babel-coloring",
+    "henry-li.vscode-import-formatter"
+
+  ],
+  "settings": {
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "window.menuBarVisibility": "hidden",
+    "breadcrumbs.enabled": false,
+    "editor.minimap.enabled": false,
+    "explorer.openEditors.visible": 0,
+    "workbench.activityBar.visible": false,
+    "editor.wrappingIndent": "indent",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.renderWhitespace": "all",
+    "editor.tabCompletion": "on",
+    "bracketPairColorizer.forceIterationColorCycle": true,
+    "editor.rulers": [
+      0,
+      80
+    ],
+    "typescript.format.enable": true,
+    "editor.multiCursorModifier": "alt",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Popping and Locking",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#3a62e9",
+      "activityBar.activeBackground": "#3599d3",
+      "activityBar.activeBorder": "#0686b9",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "titleBar.activeBackground": "#f9e64f",
+      "titleBar.inactiveBackground": "#f9e64f99",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveForeground": "#15202b99",
+      "statusBar.background": "#257a3a",
+      "statusBar.foreground": "#dee5ec",
+      "activityBarBadge.background": "#a8f6b5",
+      "activityBarBadge.foreground": "#0a2705",
+      "statusBarItem.hoverBackground": "#29dd6e",
+    },
+    // A set of command IDs whose keybindings will not be sent to the Shell and
+    // instead always be handled by Code. This allows the use of keybindings
+    // that would normally be consumed by the Shell to act the same as when
+    // the terminal is not focused, for example ctrl+p to launch Quick Open.
+    "terminal.integrated.commandsToSkipShell": [
+      "editor.action.toggleTabFocusMode",
+      "workbench.action.debug.continue",
+      "workbench.action.debug.restart",
+      "workbench.action.debug.run",
+      "workbench.action.debug.start",
+      "workbench.action.debug.stop",
+      "workbench.action.quickOpen",
+      "workbench.action.showCommands",
+      "workbench.action.terminal.clear",
+      "workbench.action.terminal.copySelection",
+      "workbench.action.terminal.focus",
+      "workbench.action.terminal.focusNext",
+      "workbench.action.terminal.focusPrevious",
+      "workbench.action.terminal.kill",
+      "workbench.action.terminal.new",
+      "workbench.action.terminal.paste",
+      "workbench.action.terminal.runSelectedText",
+      "workbench.action.terminal.scrollDown",
+      "workbench.action.terminal.scrollDownPage",
+      "workbench.action.terminal.scrollToBottom",
+      "workbench.action.terminal.scrollToTop",
+      "workbench.action.terminal.scrollUp",
+      "workbench.action.terminal.scrollUpPage",
+      "workbench.action.terminal.toggleTerminal"
+    ],
+  }
+}

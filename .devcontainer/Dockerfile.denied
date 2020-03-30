@@ -1,0 +1,50 @@
+FROM node:10
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM xterm-256color
+ENV TZ=America/Sao_Paulo
+
+ARG USERNAME=vscode
+ARG USER_UID=1001
+ARG USER_GID=$USER_UID
+
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd -s /bin/zsh --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && apt-get update \
+    && apt-get install -y sudo git procps nano zip htop openssh-server net-tools \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME \
+    #
+    # Clean up
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+USER $USERNAME
+
+COPY config/zsh-in-docker.sh /tmp
+
+RUN sh -c "$(cat /tmp/zsh-in-docker.sh)" -- \
+    -p "git" \
+    -p https://github.com/zsh-users/zsh-autosuggestions \
+    -p https://github.com/zsh-users/zsh-completions \
+    -p https://github.com/zsh-users/zsh-history-substring-search \
+    -p https://github.com/zsh-users/zsh-syntax-highlighting
+
+# RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+# ENV SHELL /bin/zsh
+# RUN git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+# RUN ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "/home/vscode/.oh-my-zsh/themes/spaceship.zsh-theme"
+
+
+# COPY config/zshrc  ./root/.zshrc
+# COPY config/dev.nginx.conf ./root
+ADD config/keybindings.json ./home/vscode/.vscode-server/User/keybindings.json
+
+# Portas abertas
+EXPOSE 4010 4020 2999 3000 3051 3061 3071 3041 3010 3021 3031 3081
+
+
+# start zsh
+ENTRYPOINT [ "/bin/zsh" ]
+CMD ["zsh"]
